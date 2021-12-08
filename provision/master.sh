@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Dependências
-yum install -y curl vim device-mapper-persistent-data lvm2 epel-release wget git net-tools bind-utils yum-utils iptables-services bridge-utils bash-completion kexec-tools sos psacct docker python-ipaddress PyYAML
+yum install -y curl httpd-tools vim device-mapper-persistent-data lvm2 epel-release wget git net-tools bind-utils yum-utils iptables-services bridge-utils bash-completion kexec-tools sos psacct docker python-ipaddress PyYAML
 
 systemctl start docker
 systemctl enable docker
@@ -29,4 +29,5 @@ sed -i 's/openshift.common.ip/openshift.common.public_ip/' roles/openshift_contr
 ansible-playbook /root/openshift-ansible/playbooks/prerequisites.yml
 ansible-playbook /root/openshift-ansible/playbooks/deploy_cluster.yml
 
-htpasswd -Bbc /etc/origin/master/htpasswd developer 4linux
+mkdir -p /etc/origin/master/
+htpasswd -Bbc /etc/origin/master/.htpasswd developer 4linux

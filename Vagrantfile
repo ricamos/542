@@ -10,8 +10,11 @@ vms = {
 
 Vagrant.configure('2') do |config|
 
-  config.vm.box = 'centos/7'
+  config.vm.box = 'geerlingguy/centos7'
+  #config.vm.box = 'centos/7'
   config.vm.box_check_update = false
+  #config.ssh.insert_key = false
+  #config.ssh.private_key_path = '~/.vagrant.d/insecure_private_key'
 
   vms.each do |name, conf|
     config.vm.define "#{name}" do |k|
@@ -20,6 +23,7 @@ Vagrant.configure('2') do |config|
       k.vm.provider 'virtualbox' do |vb|
         vb.memory = conf['memory']
         vb.cpus = conf['cpus']
+        #vb.gui = true
       end
       k.vm.provider 'libvirt' do |lv|
         lv.memory = conf['memory']
