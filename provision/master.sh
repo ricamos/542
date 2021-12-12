@@ -31,3 +31,4 @@ ansible-playbook /root/openshift-ansible/playbooks/deploy_cluster.yml
 
 mkdir -p /etc/origin/master/
 htpasswd -Bbc /etc/origin/master/.htpasswd developer 4linux
+mv /etc/origin/master/.htpasswd /etc/origin/master/htpasswd -f
